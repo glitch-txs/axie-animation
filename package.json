@@ -1,0 +1,73 @@
+{
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "axie-animation",
+  "author": "Glitch",
+  "module": "dist/axie-animation.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/axie-animation.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/axie-animation.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@axieinfinity/mixer": "1.0.1",
+    "@size-limit/preset-small-lib": "^8.1.0",
+    "@types/node": "^18.8.0",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "ethers": "^5.7.1",
+    "husky": "^8.0.1",
+    "pixi-spine": "1.6.2",
+    "pixi.js": "4.8.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "size-limit": "^8.1.0",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "@rollup/plugin-image": "^2.1.1",
+    "bufferutil": "^4.0.6",
+    "postcss": "^8.4.17",
+    "utf-8-validate": "^5.0.9"
+  }
+}
