@@ -257,6 +257,7 @@ style: {
     width: 600,
     height: 500,
     transparent: true,
+    resolution: window.devicePixelRatio,
   }
 ```
 
