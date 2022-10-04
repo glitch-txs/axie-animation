@@ -36,6 +36,10 @@
   "name": "axie-animation",
   "author": "Glitch",
   "module": "dist/axie-animation.esm.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bright-Glitch/axie-animation.git"
+  },
   "size-limit": [
     {
       "path": "dist/axie-animation.cjs.production.min.js",

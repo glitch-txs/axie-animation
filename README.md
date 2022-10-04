@@ -4,13 +4,13 @@
 To run you'll need to first install the following dependencies:
 
 ```
-npm i pixi-spine@1.6.2 pixi.js@4.8.9 @axieinfinity/mixer
+npm i pixi-spine@1.6.2 pixi.js@4.8.9 @axieinfinity/mixer ethers
 ```
 
 or
 
 ```
-yarn add pixi-spine@1.6.2 pixi.js@4.8.9 @axieinfinity/mixer
+yarn add pixi-spine@1.6.2 pixi.js@4.8.9 @axieinfinity/mixer ethers
 ```
 
 install:
