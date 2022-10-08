@@ -24,7 +24,7 @@ export class CurrentFigure extends PIXI.Container {
     this.currentSpine = newFigure;
 
       this.setScaleAxie(options.scaleAxie)
-      this.changeCurrentAnimation(options.animationId, options.loopAnimation, options.delay, options.app);
+      this.changeCurrentAnimation(options.animationId, options.loopAnimation, options.delay, options.app, options.setIntervalID);
     this.addChild(this.currentSpine);
     options.setLoading(false)
     if(prevSpine){
@@ -32,7 +32,14 @@ export class CurrentFigure extends PIXI.Container {
     }
   }
 
-  changeCurrentAnimation(animationId: number[], loopAnimation: boolean, delay: number, app: PIXI.Application ) {
+  changeCurrentAnimation(animationId: number[], loopAnimation: boolean, delay: number, app: PIXI.Application, setIntervalID: (ID: NodeJS.Timer)=> void ) {
+
+    //this counter helps to reduce the amount of calls to the loop funtion
+    let counter = 0;
+    let firstTime = true;
+
+    setInterval(() => counter++ ,1000)    
+
 
     if (this.currentSpine?.state.hasAnimation('action/run')) {
       this.currentSpine.state.setAnimation(0, 'action/run', true);
@@ -50,34 +57,27 @@ export class CurrentFigure extends PIXI.Container {
       this.currentSpine?.state.addAnimation(4, "action/mix/normal-mouth-animation", true, 0)
     }
 
-    //this counter helps to reduce the amount of calls to the loop funtion
-    let counter = 0;
-    let firstTime = true;
-
-    setInterval(() => counter++ ,1000)    
-
     this.currentSpine?.state.addAnimation(0, "action/idle/normal", true, 0);
 
-    const animationDuration = this.currentSpine?.state.tracks[0].animation.duration || 0;
+    const animationDuration = this.currentSpine?.state.tracks[0].animation.duration || 1;
 
     if(loopAnimation && animationId.length == 1){
       this.currentSpine?.state.addAnimation(0, animationList[animationId[0]], loopAnimation, delay);
     } else{
-      app.ticker?.add(()=>loop())
-    }
+      const _intervalID =  setInterval(()=>{
 
-    const loop = ()=>{
+        if( (counter >= animationId.length * delay * animationDuration) || firstTime){
+          animationId.forEach((id)=>{
+              this.currentSpine?.state.addAnimation(0, animationList[id], false, delay);
+              this.currentSpine?.state.addAnimation(0, "action/idle/normal", true, 0);
+          })
+          console.log(animationId)
+          counter = 0;
+          firstTime = false;
+      }
+      }, 1000)
 
-        //we delay this call for at least one second
-        if( delay === 0 ? counter > 0 : ((counter >= animationId.length * delay * animationDuration) || firstTime )){
-
-            animationId.forEach(async (id)=>{
-                this.currentSpine?.state.addAnimation(0, animationList[id], false, delay);
-                this.currentSpine?.state.addAnimation(0, "action/idle/normal", true, 0);
-            })
-            counter = 0;
-            firstTime = false;
-        }
+      setIntervalID(_intervalID)
     }
 
   }

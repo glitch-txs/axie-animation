@@ -42,6 +42,8 @@ export const AxieAnimation: FunctionComponent<AxieAnimationType> = ({
 
   const [browser, setBrowser] = useState<Boolean>(true)
 
+  const [intervalID, setIntervalID] = useState<NodeJS.Timer>()
+
   //Removes animation glitch when browser is not focus and get's focus back.
   useEffect(() => {
     
@@ -66,7 +68,7 @@ export const AxieAnimation: FunctionComponent<AxieAnimationType> = ({
         canvasContainer.lastChild?.remove()
       }
       setLoading(true)
-      const game = new PlaygroundGame({ axieId, animationId, loopAnimation, delay, scaleAxie, setLoading, style })
+      const game = new PlaygroundGame({ axieId, animationId, loopAnimation, delay, scaleAxie, setLoading, style, setIntervalID })
       gameRef.current = game
       gameRef.current.startGame()
       canvasContainer.appendChild(game.view)
@@ -88,7 +90,7 @@ export const AxieAnimation: FunctionComponent<AxieAnimationType> = ({
     } else {
       setLoading(true)
       if(gameRef && gameRef.current && animationId && typeof loopAnimation !== 'undefined' && typeof delay !== 'undefined' && scaleAxie){
-        gameRef.current.changeSpine({ axieId, animationId, loopAnimation, delay, scaleAxie, setLoading, app: gameRef.current })
+        gameRef.current.changeSpine({ axieId, animationId, loopAnimation, delay, scaleAxie, setLoading, app: gameRef.current, setIntervalID })
       }
     }
   }, [axieId, scaleAxie])
@@ -97,13 +99,14 @@ export const AxieAnimation: FunctionComponent<AxieAnimationType> = ({
 
     const onChangeAnimation = (animationId: number[], loopAnimation: boolean, delay: number) => {
       setAnimation(animation)
-        gameRef?.current?.currentFigure?.changeCurrentAnimation(animationId, loopAnimation, delay, gameRef.current)
+        gameRef?.current?.currentFigure?.changeCurrentAnimation(animationId, loopAnimation, delay, gameRef.current, setIntervalID)
     }
 
     if(count === 0){
       return
     }else{
       if(animationId && typeof loopAnimation !== 'undefined' && typeof delay !== 'undefined'){
+        clearInterval(intervalID)
         onChangeAnimation(animationId, loopAnimation, delay)
       }
     }

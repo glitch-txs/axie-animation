@@ -40,6 +40,7 @@ export type ConstructorOptions = {
   delay: number,
   scaleAxie:number, 
   setLoading: (Loading: boolean)=>void,
+  setIntervalID: (ID: NodeJS.Timer) => void,
 
   style?: {
     width?: number,
@@ -57,6 +58,7 @@ export type ConstructorPlayground = {
   delay: number,
   scaleAxie:number, 
   setLoading: (Loading: boolean)=>void,
+  setIntervalID: (ID: NodeJS.Timer) => void,
 
   style?: {
     width?: number,

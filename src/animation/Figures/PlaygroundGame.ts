@@ -14,6 +14,7 @@ export class PlaygroundGame extends PIXI.Application {
   loopAnimation: boolean;
   scaleAxie:number;
   setLoading: (Loading: boolean)=>void;
+  setIntervalID: (ID: NodeJS.Timer) => void;
 
   constructor(options: ConstructorPlayground) {
     super(options.style);
@@ -25,6 +26,7 @@ export class PlaygroundGame extends PIXI.Application {
     this.loopAnimation = options.loopAnimation;
     this.scaleAxie = options.scaleAxie;
     this.setLoading = options.setLoading;
+    this.setIntervalID = options.setIntervalID
 
     this.currentFigure = undefined;
   }
@@ -39,7 +41,7 @@ export class PlaygroundGame extends PIXI.Application {
         currentFigure.currentSpine = figure;
         currentFigure.addChild(figure);
       }
-        currentFigure.changeCurrentAnimation(this.animationId, this.loopAnimation, this.delay, this);
+        currentFigure.changeCurrentAnimation(this.animationId, this.loopAnimation, this.delay, this, this.setIntervalID);
         currentFigure.setScaleAxie(this.scaleAxie)
       
       if(this.offsetWidth && this.offsetHeight){
