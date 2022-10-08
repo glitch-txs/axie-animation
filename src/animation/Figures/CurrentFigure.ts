@@ -71,7 +71,6 @@ export class CurrentFigure extends PIXI.Container {
               this.currentSpine?.state.addAnimation(0, animationList[id], false, delay);
               this.currentSpine?.state.addAnimation(0, "action/idle/normal", true, 0);
           })
-          console.log(animationId)
           counter = 0;
           firstTime = false;
       }

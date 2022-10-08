@@ -218,7 +218,7 @@ numbered:
 40: "activity/victory-pose-back-flip"
 ```
 
-*animation 1 and 31 is broken, idk why*
+*animation 1 and 31 are broken, idk why*
 
 You can pass an array to *animationId* with your desired animations.
 
