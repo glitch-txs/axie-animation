@@ -40,6 +40,21 @@ export const AxieAnimation: FunctionComponent<AxieAnimationType> = ({
   const container = useRef<HTMLDivElement>(null)
   const gameRef = useRef<PlaygroundGame | null>(null)
 
+  const [browser, setBrowser] = useState<Boolean>(true)
+
+  //Removes animation glitch when browser is not focus and get's focus back.
+  useEffect(() => {
+    
+    window.addEventListener('blur', ()=>setBrowser(false)) 
+
+    window.addEventListener('focus', ()=>setBrowser(true))
+
+    return ()=>{
+      window.removeEventListener('blur', ()=>setBrowser(false)) 
+
+      window.removeEventListener('focus', ()=>setBrowser(true))
+    }
+  }, [])
 
   //Initializes The Canvas and First Axie
   useEffect(() => {
@@ -93,10 +108,8 @@ export const AxieAnimation: FunctionComponent<AxieAnimationType> = ({
       }
     }
 
-  }, [animationId, loopAnimation, delay])
+  }, [animationId, loopAnimation, delay, browser])
   
-
-
 
   return (
     <div style={{ height:`${style?.height}px`, width:`${style?.width}px`, position:'relative' }}>

@@ -300,5 +300,7 @@ The whole Axie will re-render if you dynamically change the *axieId* or *scaleAx
 
 Only the animation will change and the Axie will NOT re-render if you dynamically change the *animationId*, *loopAnimation* or *delay*.
 
+(animation will also re-render if the browser is blured and then focused back, this fixes an animation bug)
+
 ----------
 Feel free to commit changes, if you would like to get in touch with me you can find me on discord as Glitch#0794
