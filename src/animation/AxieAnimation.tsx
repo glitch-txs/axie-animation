@@ -99,7 +99,7 @@ export const AxieAnimation: FunctionComponent<AxieAnimationType> = ({
 
     const onChangeAnimation = (animationId: number[], loopAnimation: boolean, delay: number) => {
       setAnimation(animation)
-        gameRef?.current?.currentFigure?.changeCurrentAnimation(animationId, loopAnimation, delay, gameRef.current, setIntervalID)
+        gameRef?.current?.currentFigure?.changeCurrentAnimation(animationId, loopAnimation, delay, setIntervalID)
     }
 
     if(count === 0){

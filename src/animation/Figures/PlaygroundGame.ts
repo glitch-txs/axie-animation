@@ -41,7 +41,7 @@ export class PlaygroundGame extends PIXI.Application {
         currentFigure.currentSpine = figure;
         currentFigure.addChild(figure);
       }
-        currentFigure.changeCurrentAnimation(this.animationId, this.loopAnimation, this.delay, this, this.setIntervalID);
+        currentFigure.changeCurrentAnimation(this.animationId, this.loopAnimation, this.delay, this.setIntervalID);
         currentFigure.setScaleAxie(this.scaleAxie)
       
       if(this.offsetWidth && this.offsetHeight){
