@@ -17,6 +17,7 @@ export type AxieAnimationType = {
   delay?: number,
   scaleAxie?: number,
   puffySize?: number,
+  YPosition?: number,
   style?: {
     width?: number,
     height?: number,
@@ -58,6 +59,7 @@ export type ConstructorPlayground = {
   delay: number,
   scaleAxie:number, 
   setLoading: (Loading: boolean)=>void,
+  YPosition: number,
   setIntervalID: (ID: NodeJS.Timer) => void,
 
   style?: {

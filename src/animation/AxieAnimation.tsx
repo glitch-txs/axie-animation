@@ -13,6 +13,7 @@ export const def: AxieAnimationType = {
   delay: 1.8,
   scaleAxie: 1,
   puffySize: 200,
+  YPosition: 2,
  style: {
     width: 600,
     height: 500,
@@ -29,6 +30,7 @@ export const AxieAnimation: FunctionComponent<AxieAnimationType> = ({
   loopAnimation = def.loopAnimation, 
   delay = def.delay, 
   scaleAxie = def.scaleAxie, 
+  YPosition = def.YPosition,
   style = def.style,
   puffySize = def.puffySize
 }) => {
@@ -60,7 +62,7 @@ export const AxieAnimation: FunctionComponent<AxieAnimationType> = ({
 
   //Initializes The Canvas and First Axie
   useEffect(() => {
-    if(animationId && typeof loopAnimation !== 'undefined' && typeof delay !== 'undefined' && scaleAxie){
+    if(animationId && typeof loopAnimation !== 'undefined' && typeof delay !== 'undefined' && scaleAxie && typeof YPosition !== 'undefined'){
       if (!container) return
       if (!container.current) return
       const canvasContainer = container.current
@@ -68,7 +70,7 @@ export const AxieAnimation: FunctionComponent<AxieAnimationType> = ({
         canvasContainer.lastChild?.remove()
       }
       setLoading(true)
-      const game = new PlaygroundGame({ axieId, animationId, loopAnimation, delay, scaleAxie, setLoading, style, setIntervalID })
+      const game = new PlaygroundGame({ axieId, animationId, loopAnimation, delay, scaleAxie, setLoading, style, YPosition, setIntervalID })
       gameRef.current = game
       gameRef.current.startGame()
       canvasContainer.appendChild(game.view)

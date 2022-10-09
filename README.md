@@ -294,6 +294,18 @@ export default AnimationComponent
 
 Notice how we set the color '#FF91AF' as '0xFF91AF' (switching '#' to '0x'), and *width* and *height* as numbers.
 
+### Y Position
+
+You can pass a *YPosition* property if you would like to change the Y Axie's position inside the canvas. 
+
+```
+<AxieAnimation axieId={1235} YPosition={1.2}/>
+```
+
+It's advisable to use a number between 1 and 2. Inside the code this number is going to divide the height of the canvas.
+
+*Default value is 2*
+
 ## Dynamic Render
 
 The whole Axie will re-render if you dynamically change the *axieId* or *scaleAxie* props.
