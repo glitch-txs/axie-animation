@@ -62,7 +62,7 @@ export class CurrentFigure extends PIXI.Container {
     const animationDuration = this.currentSpine?.state.tracks[0].animation.duration || 1;
 
     if(loopAnimation && animationId.length == 1){
-      this.currentSpine?.state.addAnimation(0, animationList[animationId[0]], loopAnimation, delay);
+      this.currentSpine?.state.setAnimation(0, animationList[animationId[0]], loopAnimation);
     } else{
       const _intervalID =  setInterval(()=>{
 

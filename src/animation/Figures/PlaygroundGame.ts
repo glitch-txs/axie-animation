@@ -45,7 +45,7 @@ export class PlaygroundGame extends PIXI.Application {
         currentFigure.setScaleAxie(this.scaleAxie)
       
       if(this.offsetWidth && this.offsetHeight){
-        currentFigure.position.set(this.offsetWidth / 2, this.offsetHeight / 1.1);
+        currentFigure.position.set(this.offsetWidth / 2, this.offsetHeight / 1.2);
       }
       this.stage?.addChild(currentFigure);
       this.currentFigure = currentFigure;
