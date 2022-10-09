@@ -11,7 +11,6 @@ export class PlaygroundGame extends PIXI.Application {
   axieId: number;
   animationId: number[];
   delay: number;
-  loopAnimation: boolean;
   scaleAxie:number;
   setLoading: (Loading: boolean)=>void;
   YPosition: number;
@@ -24,7 +23,6 @@ export class PlaygroundGame extends PIXI.Application {
     this.axieId = options.axieId;
     this.animationId = options.animationId;
     this.delay = options.delay;
-    this.loopAnimation = options.loopAnimation;
     this.scaleAxie = options.scaleAxie;
     this.setLoading = options.setLoading;
     this.YPosition = options.YPosition;
@@ -43,7 +41,7 @@ export class PlaygroundGame extends PIXI.Application {
         currentFigure.currentSpine = figure;
         currentFigure.addChild(figure);
       }
-        currentFigure.changeCurrentAnimation(this.animationId, this.loopAnimation, this.delay, this.setIntervalID);
+        currentFigure.changeCurrentAnimation(this.animationId, this.delay, this.setIntervalID);
         currentFigure.setScaleAxie(this.scaleAxie)
       
       if(this.offsetWidth && this.offsetHeight){

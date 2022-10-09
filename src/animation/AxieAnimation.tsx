@@ -9,7 +9,6 @@ import s from './styles.module.css'
 export const def: AxieAnimationType = {
   axieId:NaN,
   animationId: [27,28,29,30],
-  loopAnimation: false,
   delay: 1.8,
   scaleAxie: 1,
   puffySize: 200,
@@ -26,8 +25,7 @@ PIXI.settings.PRECISION_FRAGMENT = PIXI.PRECISION.HIGH
 
 export const AxieAnimation: FunctionComponent<AxieAnimationType> = ({ 
   axieId, 
-  animationId = def.animationId, 
-  loopAnimation = def.loopAnimation, 
+  animationId = def.animationId,
   delay = def.delay, 
   scaleAxie = def.scaleAxie, 
   YPosition = def.YPosition,
@@ -62,7 +60,7 @@ export const AxieAnimation: FunctionComponent<AxieAnimationType> = ({
 
   //Initializes The Canvas and First Axie
   useEffect(() => {
-    if(animationId && typeof loopAnimation !== 'undefined' && typeof delay !== 'undefined' && scaleAxie && typeof YPosition !== 'undefined'){
+    if(animationId && typeof delay !== 'undefined' && scaleAxie && typeof YPosition !== 'undefined'){
       if (!container) return
       if (!container.current) return
       const canvasContainer = container.current
@@ -70,7 +68,7 @@ export const AxieAnimation: FunctionComponent<AxieAnimationType> = ({
         canvasContainer.lastChild?.remove()
       }
       setLoading(true)
-      const game = new PlaygroundGame({ axieId, animationId, loopAnimation, delay, scaleAxie, setLoading, style, YPosition, setIntervalID })
+      const game = new PlaygroundGame({ axieId, animationId, delay, scaleAxie, setLoading, style, YPosition, setIntervalID })
       gameRef.current = game
       gameRef.current.startGame()
       canvasContainer.appendChild(game.view)
@@ -91,29 +89,29 @@ export const AxieAnimation: FunctionComponent<AxieAnimationType> = ({
       return
     } else {
       setLoading(true)
-      if(gameRef && gameRef.current && animationId && typeof loopAnimation !== 'undefined' && typeof delay !== 'undefined' && scaleAxie){
-        gameRef.current.changeSpine({ axieId, animationId, loopAnimation, delay, scaleAxie, setLoading, app: gameRef.current, setIntervalID })
+      if(gameRef && gameRef.current && animationId && typeof delay !== 'undefined' && scaleAxie){
+        gameRef.current.changeSpine({ axieId, animationId, delay, scaleAxie, setLoading, app: gameRef.current, setIntervalID })
       }
     }
   }, [axieId, scaleAxie])
 
   useEffect(() => {
 
-    const onChangeAnimation = (animationId: number[], loopAnimation: boolean, delay: number) => {
+    const onChangeAnimation = (animationId: number[], delay: number) => {
       setAnimation(animation)
-        gameRef?.current?.currentFigure?.changeCurrentAnimation(animationId, loopAnimation, delay, setIntervalID)
+        gameRef?.current?.currentFigure?.changeCurrentAnimation(animationId, delay, setIntervalID)
     }
 
     if(count === 0){
       return
     }else{
-      if(animationId && typeof loopAnimation !== 'undefined' && typeof delay !== 'undefined'){
+      if(animationId && typeof delay !== 'undefined'){
         clearInterval(intervalID)
-        onChangeAnimation(animationId, loopAnimation, delay)
+        onChangeAnimation(animationId, delay)
       }
     }
 
-  }, [animationId, loopAnimation, delay, browser])
+  }, [animationId, delay, browser])
   
 
   return (

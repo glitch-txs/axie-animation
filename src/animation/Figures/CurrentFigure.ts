@@ -24,7 +24,7 @@ export class CurrentFigure extends PIXI.Container {
     this.currentSpine = newFigure;
 
       this.setScaleAxie(options.scaleAxie)
-      this.changeCurrentAnimation(options.animationId, options.loopAnimation, options.delay, options.setIntervalID);
+      this.changeCurrentAnimation(options.animationId, options.delay, options.setIntervalID);
     this.addChild(this.currentSpine);
     options.setLoading(false)
     if(prevSpine){
@@ -32,7 +32,7 @@ export class CurrentFigure extends PIXI.Container {
     }
   }
 
-  changeCurrentAnimation(animationId: number[], loopAnimation: boolean, delay: number, setIntervalID: (ID: NodeJS.Timer)=> void ) {
+  changeCurrentAnimation(animationId: number[], delay: number, setIntervalID: (ID: NodeJS.Timer)=> void ) {
 
     //this counter helps to reduce the amount of calls to the loop funtion
     let counter = 0;
@@ -61,8 +61,8 @@ export class CurrentFigure extends PIXI.Container {
 
     const animationDuration = this.currentSpine?.state.tracks[0].animation.duration || 1;
 
-    if(loopAnimation && animationId.length == 1){
-      this.currentSpine?.state.setAnimation(0, animationList[animationId[0]], loopAnimation);
+    if(delay === 0 && animationId.length == 1){
+      this.currentSpine?.state.setAnimation(0, animationList[animationId[0]], true);
     } else{
       const _intervalID =  setInterval(()=>{
 

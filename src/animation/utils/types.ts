@@ -13,7 +13,6 @@ export enum AxieDirection {
 export type AxieAnimationType = {
   axieId: number,
   animationId?: number[],
-  loopAnimation?: boolean,
   delay?: number,
   scaleAxie?: number,
   puffySize?: number,
@@ -29,7 +28,6 @@ export type AxieAnimationType = {
 
 export type NewAnimationType = {
   animationId?: number[],
-  loopAnimation?: boolean,
   delay?: number,
 }
 
@@ -37,7 +35,6 @@ export type ConstructorOptions = {
   app: PIXI.Application,
   axieId: number, 
   animationId: number[], 
-  loopAnimation: boolean, 
   delay: number,
   scaleAxie:number, 
   setLoading: (Loading: boolean)=>void,
@@ -55,7 +52,6 @@ export type ConstructorOptions = {
 export type ConstructorPlayground = {
   axieId: number, 
   animationId: number[], 
-  loopAnimation: boolean, 
   delay: number,
   scaleAxie:number, 
   setLoading: (Loading: boolean)=>void,

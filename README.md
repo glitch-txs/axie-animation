@@ -238,13 +238,13 @@ You can also set a *delay* between each animation. The default value of the *del
 
 ### Looping single animations
 
-To get just one animation looped without delays you can set the *loopAnimation* prop as *true*:
+delay = 0 will only work if a single animation is given, for example:
 
 ```
-<AxieAnimation axieId={1235} animationId={[32]} loopAnimation />
+<AxieAnimation axieId={1235} animationId={[0]} delay={0} />
 ```
 
-*This is useful in case you want you're axie to run without gitches for example.*
+If two or more animation are given the minimum delay will be 1 second.
 
 ### Styling the Canvas:
 
@@ -310,9 +310,14 @@ It's advisable to use a number between 1 and 2. Inside the code this number is g
 
 The whole Axie will re-render if you dynamically change the *axieId* or *scaleAxie* props.
 
-Only the animation will change and the Axie will NOT re-render if you dynamically change the *animationId*, *loopAnimation* or *delay*.
+Only the animation will change and the Axie will NOT re-render if you dynamically change the *animationId* or *delay*.
 
 (animation will also re-render if the browser is blured and then focused back, this fixes an animation bug)
+
+
+## Current ERRORS:
+
+Seems like setting resolution to window.pixelratio triggers an error on phone displays. giving it 1 as value makes it work but the quality is low. If you know how to fix this please hit me up.
 
 ----------
 Feel free to commit changes, if you would like to get in touch with me you can find me on discord as Glitch#0794
